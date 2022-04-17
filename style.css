@@ -9,11 +9,17 @@ body,h1{
     font-family: 'Akshar';
     background: rgb(201, 201, 201);
 }
-header,.container, .display-container{
+header,.container,.button-container{
     display: flex;
     align-items: center;
+    gap:5px;
     flex-direction: column;
     justify-content: center;
+}
+.display-container{
+    min-height: 300px;
+    width: 50%;
+    background-color: red;
 }
 .num-container{
     display:grid;

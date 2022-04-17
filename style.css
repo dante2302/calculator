@@ -1,0 +1,30 @@
+/* akshar */
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+body,h1{
+    margin: 0;
+    font-family: 'Akshar';
+    background: rgb(201, 201, 201);
+}
+header,.container, .display-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.num-container{
+    display:grid;
+    gap: 5px;
+    grid-template-columns: repeat(3,1fr)
+}
+button{
+    font-size: 1.5em;
+    padding: 20px;
+}
+.empty{
+    background:transparent;
+    border: none;
+}

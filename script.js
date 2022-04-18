@@ -1,3 +1,9 @@
+//EXTRA CREDIT: Add a . button and let users input decimals!(disable the decimal button if there’s already one in the display)
+// EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+// EXTRA CREDIT: Add keyboard support!
+
+
+
 const addButton = document.querySelector(".add-button")
 const subtractButton = document.querySelector(".subtract-button")
 const multiplyButton = document.querySelector(".multiply-button")

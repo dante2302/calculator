@@ -68,11 +68,15 @@ button{
     box-shadow: 1px 1px 1px 1px black;
     padding: 20px;
 }
-.clear{
-    background: rgba(234, 86, 33, 0.957);
+ .clear{
+    background: rgba(212, 27, 27, 0.87);
 }
 .operate-button{
     grid-column: span 2;
+    background: rgba(234, 86, 33, 0.957);
+}
+.number{
+    background: rgb(61, 61, 61);
 }
 footer{
     font-size: 1.5rem;
@@ -85,6 +89,7 @@ footer{
 }
 a{
     margin-left: 8px;
+    margin-top: 5px;
 }
 .github {
     width:25px;

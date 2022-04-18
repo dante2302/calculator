@@ -21,6 +21,7 @@ header,.container,.button-container{
     width: 50%;
     background-color: red;
 }
+
 .num-container{
     display:grid;
     gap: 5px;
@@ -30,7 +31,14 @@ button{
     font-size: 1.5em;
     padding: 20px;
 }
-.empty{
-    background:transparent;
-    border: none;
+.zero{
+    grid-area: 4;
+}
+.button-container{
+    display:flex;
+    flex-direction: row;
+}
+.operators{
+    display:flex;
+    flex-direction:column;
 }

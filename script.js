@@ -9,36 +9,37 @@ const history = document.querySelector('.history')
 
 let currentNumber1 = null
 let currentNumber2 = null
-let currentOperator = null;
+let currentOperator = '';
+let shouldResetScreen = false;
 
-function setCurrentNumber(num){
-    num = parseInt(num);
-    if(currentNumber1 == null){currentNumber1 = num;}
-    else currentNumber2 = num;
+function resetScreen(){
+    display.textContent = ''
+    shouldResetScreen = false
 }
 
 function setCurrentOperator(sign){
-    if(currentOperator != null){}
-    if(display.textContent == null){return}
-    currentOperator = `${sign}`;
-    setCurrentNumber(display.textContent)
-    display.textContent = null;
+    if(currentOperator !== '')operate();
+    currentOperator = sign;
+    currentNumber1 = parseInt(display.textContent);
+    history.textContent = `${currentNumber1} ${sign}`
+    shouldResetScreen = true;
 }
 
-function operate(num1, num2){
-    num2 = parseInt(display.textContent)
-    setCurrentNumber(num2)
+function operate(){
+    if(currentOperator==null || shouldResetScreen)return
+    currentNumber2 = parseInt(display.textContent)
     let result = null
     switch(currentOperator){
-        case "+" : result = add(num1,num2); break;
-        case "-" : result = subtract(num1,num2); break;
-        case "*" : result = multiply(num1,num2); break;
-        case "/" : result = divide(num1,num2); break;
+        case "+" : result = add(currentNumber1,currentNumber2); break;
+        case "-" : result = subtract(currentNumber1,currentNumber2); break;
+        case "*" : result = multiply(currentNumber1,currentNumber2); break;
+        case "/" : result = divide(currentNumber1,currentNumber2); break;
         default : if(num2==null){break}
     }
-    currentNumber1 = result;
     display.textContent = result;
+    history.textContent = `${currentNumber1} ${sign} ${currentNumber2}`
 }
+
 // Operations
 
 function add(num1,num2){
@@ -60,14 +61,14 @@ function divide(num1,num2){
     return num1/num2
 }
 
-
 // Event Listeners 
-
-for(let i = 0;i<numberButtons.length;i++){
-    const button = numberButtons[i]
-    button.addEventListener('click', () => {display.textContent+=button.textContent})
-    console.log(button)
+function typeNum(value){
+    if(shouldResetScreen||display.textContent == '0'){
+        resetScreen();
+    }
+    display.textContent+=value
 }
+numberButtons.forEach((button) => button.addEventListener('click', () => typeNum(button.textContent)))
 
 addButton.addEventListener("click", () => setCurrentOperator("+"));
 subtractButton.addEventListener("click", () => setCurrentOperator("-"));

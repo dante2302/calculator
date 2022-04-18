@@ -71,6 +71,9 @@ button{
 .clear{
     background: rgba(234, 86, 33, 0.957);
 }
+.operate-button{
+    grid-column: span 2;
+}
 footer{
     font-size: 1.5rem;
     display: flex;
@@ -79,17 +82,14 @@ footer{
     font-weight: 400;
     width: 100%;
     color: black;
-    background: rgba(0, 0, 0, 0.285);
 }
-.fa-github {
-    color: var(--font);
-    font-size: 24px;
+a{
+    margin-left: 8px;
+}
+.github {
+    width:25px;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  .fa-github:hover {
-    transform: rotate(360deg) scale(1.2);
 }
-.operate-button{
-    grid-column: span 2;
+.github:hover {
+    transform: rotate(360deg) scale(1.2);
 }

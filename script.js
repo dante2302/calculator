@@ -37,7 +37,8 @@ function operate(){
         default : if(num2==null){break}
     }
     display.textContent = result;
-    history.textContent = `${currentNumber1} ${sign} ${currentNumber2}`
+    history.textContent = `${currentNumber1} ${currentOperator} ${currentNumber2} =`
+    currentOperator = null;
 }
 
 // Operations

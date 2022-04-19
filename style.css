@@ -71,7 +71,7 @@ button{
  .clear{
     background: rgba(212, 27, 27, 0.87);
 }
-.operate-button{
+.operate{
     grid-column: span 2;
     background: rgba(234, 86, 33, 0.957);
 }

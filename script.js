@@ -3,12 +3,13 @@
 // EXTRA CREDIT: Add keyboard support!
 
 
-
-const addButton = document.querySelector(".add-button")
-const subtractButton = document.querySelector(".subtract-button")
-const multiplyButton = document.querySelector(".multiply-button")
-const divideButton = document.querySelector(".divide-button")
-const operateButton = document.querySelector(".operate-button")
+const operators = Array.from(document.querySelectorAll('.operator'));
+const clearButton = document.querySelector('.clear');
+// //const addButton = document.querySelector(".add-button");
+// //const subtractButton = document.querySelector(".subtract-button");
+// const multiplyButton = document.querySelector(".multiply-button");
+// const divideButton = document.querySelector(".divide-button");
+const operateButton = document.querySelector(".operate");
 const numberButtons = Array.from(document.querySelectorAll('.number'));
 const display = document.querySelector('.display')
 const history = document.querySelector('.history')
@@ -17,6 +18,13 @@ let currentNumber1 = null
 let currentNumber2 = null
 let currentOperator = '';
 let shouldResetScreen = false;
+
+function clear(){
+    history.textContent='';
+    display.textContent='';
+    currentOperator = '';
+    shouldResetScreen = false;
+}
 
 function resetScreen(){
     display.textContent = ''
@@ -75,10 +83,25 @@ function typeNum(value){
     }
     display.textContent+=value
 }
-numberButtons.forEach((button) => button.addEventListener('click', () => typeNum(button.textContent)))
 
-addButton.addEventListener("click", () => setCurrentOperator("+"));
-subtractButton.addEventListener("click", () => setCurrentOperator("-"));
-multiplyButton.addEventListener("click", () => setCurrentOperator("*"));
-divideButton.addEventListener("click", () => setCurrentOperator("/"));
+numberButtons.forEach((button) => button.addEventListener('click', () => typeNum(button.textContent)))
+operators.forEach((button) => button.addEventListener('click', () => setCurrentOperator(button.textContent)))
+clearButton.addEventListener("click", () => clear());
+// addButton.addEventListener("click", () => setCurrentOperator("+"));
+// subtractButton.addEventListener("click", () => setCurrentOperator("-"));
+// multiplyButton.addEventListener("click", () => setCurrentOperator("*"));
+// divideButton.addEventListener("click", () => setCurrentOperator("/"));
 operateButton.addEventListener("click", () => operate(currentNumber1,currentNumber2));
+
+// Add animations to buttons
+
+        // function removeTransition(e){
+        //     if(e.propertyName != 'transform') return
+    
+        //     this.classList.remove('playing');
+        // }
+    
+        // const keys = document.querySelectorAll(".key")
+        // keys.forEach(key => {
+        //     key.addEventListener('transitionend', removeTransition)
+        // });

@@ -7,20 +7,19 @@ const operators = Array.from(document.querySelectorAll('.operator'));
 const numberButtons = Array.from(document.querySelectorAll('.number'));
 const operateButton = document.querySelector(".operate");
 const clearButton = document.querySelector('.clear');
-const deleteButton = document.querySelector('.delete')
-const display = document.querySelector('.display')
-const history = document.querySelector('.history')
+const deleteButton = document.querySelector('.delete');
+const floatButton = document.querySelector('.float');
+const display = document.querySelector('.display');
+const history = document.querySelector('.history');
+
 let currentNumber1 = null
 let currentNumber2 = null
 let currentOperator = '';
 let shouldResetScreen = false;
 
-function clear(){
-    currentNumber1 = null;
-    history.textContent='';
-    display.textContent='';
-    currentOperator = '';
-    shouldResetScreen = false;
+function round(num){
+    num = Math.round(num * 10000) / 10000;
+    return num
 }
 
 function resetScreen(){
@@ -34,24 +33,37 @@ function deleteChar(){
     display.textContent = newStr
 }
 
+function clear(){
+    currentNumber1 = null;
+    history.textContent='';
+    display.textContent='';
+    currentOperator = '';
+    shouldResetScreen = false;
+}
+
+
 function setCurrentOperator(sign){
     if(display.textContent=="")return;
     if(currentOperator !== '')operate();
     currentOperator = sign;
-    currentNumber1 = parseInt(display.textContent);
+    currentNumber1 = parseFloat(display.textContent);
     history.textContent = `${currentNumber1} ${sign}`
     shouldResetScreen = true;
 }
 
 function operate(){
     if(currentOperator==null || shouldResetScreen)return
-    currentNumber2 = parseInt(display.textContent);
+
+    currentNumber2 = parseFloat(display.textContent);
+
     if(currentNumber2 == 0 && currentOperator == "/"){
         clear();
         display.textContent = "You cannot divide by zero";
         shouldResetScreen = true;
     }
-    let result = null
+
+    let result = null;
+
     switch(currentOperator){
         case "+" : result = add(currentNumber1,currentNumber2); break;
         case "-" : result = subtract(currentNumber1,currentNumber2); break;
@@ -59,6 +71,7 @@ function operate(){
         case "/" : result = divide(currentNumber1,currentNumber2); break;
         default : if(num2==null){break}
     }
+    result  = round(result);
     display.textContent = result;
     history.textContent = `${currentNumber1} ${currentOperator} ${currentNumber2} =`
     currentOperator = null;
@@ -95,7 +108,8 @@ numberButtons.forEach((button) => button.addEventListener('click', () => typeNum
 operators.forEach((button) => button.addEventListener('click', () => setCurrentOperator(button.textContent)))
 clearButton.addEventListener("click", () => clear());
 deleteButton.addEventListener("click", () => deleteChar());
-operateButton.addEventListener("click", () => operate(currentNumber1,currentNumber2));
+// floatingButton.addEventListener("click",() => addFloat());
+operateButton.addEventListener("click", () => operate());
 
 // Add animations to buttons
 

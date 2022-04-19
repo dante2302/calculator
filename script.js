@@ -1,42 +1,39 @@
 //EXTRA CREDIT: Add a . button and let users input decimals!(disable the decimal button if there’s already one in the display)
 // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 // EXTRA CREDIT: Add keyboard support!
+
+
 const operators = Array.from(document.querySelectorAll('.operator'));
 const numberButtons = Array.from(document.querySelectorAll('.number'));
 const operateButton = document.querySelector(".operate");
 const clearButton = document.querySelector('.clear');
-const deleteButton = document.querySelector('.delete');
-const display = document.querySelector('.display');
-const history = document.querySelector('.history');
-
-let currentNumber1 = null;
-let currentNumber2 = null;
+const deleteButton = document.querySelector('.delete')
+const display = document.querySelector('.display')
+const history = document.querySelector('.history')
+let currentNumber1 = null
+let currentNumber2 = null
 let currentOperator = '';
 let shouldResetScreen = false;
-let displayText = display.textContent;
-let historyText = history.textContent;
 
 function clear(){
     currentNumber1 = null;
-    historyText='';
-    displayText = '';
+    history.textContent='';
+    display.textContent='';
     currentOperator = '';
     shouldResetScreen = false;
 }
 
 function resetScreen(){
-    displayText = ''
+    display.textContent = ''
     shouldResetScreen = false
 }
 
 function deleteChar(){
-    if(displayText == "")return;
-    let newStr = displayText.slice(0,-1);
-    displayText = newStr;
+    
 }
 
 function setCurrentOperator(sign){
-    if(displayText=="")return;
+    if(display.textContent=="")return;
     if(currentOperator !== '')operate();
     currentOperator = sign;
     currentNumber1 = parseInt(display.textContent);

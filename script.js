@@ -29,7 +29,9 @@ function resetScreen(){
 }
 
 function deleteChar(){
-    
+    if(display.textContent == null)return;
+    let newStr = display.textContent.slice(0,-1);
+    display.textContent = newStr
 }
 
 function setCurrentOperator(sign){
@@ -43,7 +45,12 @@ function setCurrentOperator(sign){
 
 function operate(){
     if(currentOperator==null || shouldResetScreen)return
-    currentNumber2 = parseInt(display.textContent)
+    currentNumber2 = parseInt(display.textContent);
+    if(currentNumber2 == 0 && currentOperator == "/"){
+        clear();
+        display.textContent = "You cannot divide by zero";
+        shouldResetScreen = true;
+    }
     let result = null
     switch(currentOperator){
         case "+" : result = add(currentNumber1,currentNumber2); break;
@@ -72,9 +79,6 @@ function multiply(num1,num2){
 }
 
 function divide(num1,num2){
-    if(num2 == 0){
-        alert("You cannot divide by zero!")
-    }
     return num1/num2
 }
 

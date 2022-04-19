@@ -41,6 +41,10 @@ function clear(){
     shouldResetScreen = false;
 }
 
+function addFloat(){
+    if(display.textContent == null || display.textContent.includes('.'))return
+    else display.textContent += '.';
+}
 
 function setCurrentOperator(sign){
     if(display.textContent=="")return;
@@ -108,7 +112,7 @@ numberButtons.forEach((button) => button.addEventListener('click', () => typeNum
 operators.forEach((button) => button.addEventListener('click', () => setCurrentOperator(button.textContent)))
 clearButton.addEventListener("click", () => clear());
 deleteButton.addEventListener("click", () => deleteChar());
-// floatingButton.addEventListener("click",() => addFloat());
+floatButton.addEventListener("click",() => addFloat());
 operateButton.addEventListener("click", () => operate());
 
 // Add animations to buttons

@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
     <head>
         <title>Calculator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +12,9 @@
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer></script>
     </head>
+
     <body>
+
         <main>
             <div class="container">
                 <div class="wrap">
@@ -21,30 +24,51 @@
                 </div>
                 </div>
                     <div class="button-container">
-                        <button class="clear">AC</button>
-                        <button class="delete">C</button>
-                        <button class="percent">%</button>
-                        <button class="divide-button operator">/</button>
-                        <button class="number">7</button>
-                        <button class="number">8</button>
-                        <button class="number">9</button>
-                        <button class="multiply-button operator">*</button>
-                        <button class="number">4</button>
-                        <button class="number">5</button>
-                        <button class="number">6</button>
-                        <button class="subtract-button operator">-</button>
-                        <button class="number">1</button>
-                        <button class="number">2</button>
-                        <button class="number">3</button>
-                        <button class="add-button operator">+</button>
-                        <button class="number zero">0</button>
-                        <button class="float">.</button>
-                        <button class="operate">=</button>
+                        <button class="clear special" data-key="27" onclick="this.blur()"><kbd>AC</kbd></button>
+                        <button class="delete" data-key="8" onclick="this.blur()"><kbd>C</kbd></button>
+                        <button class="percent" data-key="" onclick="this.blur()"><kbd>%</kbd></button>
+                        <button class="divide-button operator" data-key="191" onclick="this.blur()"><kbd>/</kbd></button>
+                        <button class="number" data-key="55" onclick="this.blur()"><kbd>7</kbd></button>
+                        <button class="number" data-key="56" onclick="this.blur()"><kbd>8</kbd></button>
+                        <button class="number" data-key="57" onclick="this.blur()"><kbd>9</kbd></button>
+                        <button class="multiply-button operator" data-key="48" onclick="this.blur()"><kbd>*</kbd></button>
+                        <button class="number" data-key="52" onclick="this.blur()"><kbd>4</kbd></button>
+                        <button class="number" data-key="53" onclick="this.blur()"><kbd>5</kbd></button>
+                        <button class="number" data-key="54" onclick="this.blur()"><kbd>6</kbd></button>
+                        <button class="subtract-button operator" data-key="189"><kbd>-</kbd></button>
+                        <button class="number" data-key="49" onclick="this.blur()"><kbd>1</kbd></button>
+                        <button class="number" data-key="50" onclick="this.blur()"><kbd>2</kbd></button>
+                        <button class="number" data-key="51" onclick="this.blur()"><kbd>3</kbd></button>
+                        <button class="add-button operator" data-key="187" onclick="this.blur()"><kbd>+</kbd></button>
+                        <button class="number zero" data-key="48" onclick="this.blur()"><kbd>0</kbd></button>
+                        <button class="float" data-key="190" onclick="this.blur()"><kbd>.</kbd></button>
+                        <button class="operate" data-key="13" onclick="this.blur()"><kbd>=</kbd></button>
                     </div>
             </div>
         </main>
         <footer>&copy; 2022 Dante2302 <a href="https://github.com/dante2302" target="_blank">
             <i><img src="github.png" class="github"></i></a>
         </footer>
+
+        <!-- Sound from Zapsplat.com -->
+        
+        <audio data-key="48" src="audio/buttonPress10.mp3"></audio>
+        <audio data-key="49" src="audio/buttonPress01.mp3"></audio>
+        <audio data-key="50" src="audio/buttonPress02.mp3"></audio>
+        <audio data-key="51" src="audio/buttonPress03.mp3"></audio>
+        <audio data-key="52" src="audio/buttonPress04.mp3"></audio>
+        <audio data-key="53" src="audio/buttonPress05.mp3"></audio>
+        <audio data-key="54" src="audio/buttonPress06.mp3"></audio>
+        <audio data-key="55" src="audio/buttonPress07.mp3"></audio>
+        <audio data-key="56" src="audio/buttonPress08.mp3"></audio>
+        <audio data-key="57" src="audio/buttonPress09.mp3"></audio>
+        <audio data-key="27" src="audio/buttonPress10.mp3"></audio>
+        <audio data-key="13" src="audio/buttonPress10.mp3"></audio>
+        <audio data-key="8" src="audio/buttonPress10.mp3"></audio>
+        <audio data-key="189" src="audio/buttonPress10.mp3"></audio>
+        <audio data-key="187" src="audio/buttonPress10.mp3"></audio>
+        <audio data-key="190" src="audio/buttonPress10.mp3"></audio>
+        <audio data-key="191" src="audio/buttonPress10.mp3"></audio>
+
     </body>
 </html>

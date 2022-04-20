@@ -1,4 +1,4 @@
-// EXTRA CREDIT: Add keyboard support!
+
 
 
 const operators = Array.from(document.querySelectorAll('.operator'));
@@ -10,7 +10,7 @@ const floatButton = document.querySelector('.float');
 const display = document.querySelector('.display');
 const history = document.querySelector('.history');
  
-console.log(operators)
+
 let currentNumber1 = null
 let currentNumber2 = null
 let currentOperator = '';
@@ -26,13 +26,13 @@ function resetScreen(){
     shouldResetScreen = false
 }
 
-function deleteChar(e){
+function deleteChar(){
     if(display.textContent == null)return;
     let newStr = display.textContent.slice(0,-1);
     display.textContent = newStr
 }
 
-function clear(e){
+function clear(){
     currentNumber1 = null;
     history.textContent='';
     display.textContent='';
@@ -40,14 +40,21 @@ function clear(e){
     shouldResetScreen = false;
 }
 
-function addFloat(e){
+function addFloat(){
+    if(display.textContent.length > 19)return;
     if (shouldResetScreen) resetScreen()
     if(display.textContent == null || display.textContent.includes('.'))return
     else display.textContent += '.';
 }
 
 function setCurrentOperator(sign){
-    if(display.textContent=="")return;
+    if(display.textContent.length > 15){
+        clear()
+        display.textContent = "Too big of a number!"
+        shouldResetScreen = true;
+        return;
+    } //ensure that display numbers don't go outside of borders
+    if(display.textContent=="" || display.textContent == ".")return;
     if(currentOperator !== '')operate();
     currentOperator = sign;
     currentNumber1 = parseFloat(display.textContent);
@@ -72,6 +79,7 @@ function operate(){
         case "-" : result = subtract(currentNumber1,currentNumber2); break;
         case "*" : result = multiply(currentNumber1,currentNumber2); break;
         case "/" : result = divide(currentNumber1,currentNumber2); break;
+        case "%" : result = percent(currentNumber1,currentNumber2); break;
     }
     result  = round(result);
     display.textContent = result;
@@ -96,6 +104,10 @@ function multiply(num1,num2){
 function divide(num1,num2){
     return num1/num2
 }
+function percent(num1,num2){
+    num2 = num2/100
+    return num2*num1;
+}
 
 // Event Listeners 
 
@@ -115,7 +127,6 @@ operateButton.addEventListener("click", () => {playSoundOnClick(13);operate()});
 
 // Adding sound manually to buttons because every button plays a different sound
 
-
 numberButtons[0].addEventListener('click', ()=> playSoundOnClick(48)) //0
 numberButtons[3].addEventListener('click', ()=> playSoundOnClick(49)) //1
 numberButtons[2].addEventListener('click', ()=> playSoundOnClick(50)) //2
@@ -125,12 +136,14 @@ numberButtons[5].addEventListener('click', ()=> playSoundOnClick(53)) //5
 numberButtons[4].addEventListener('click', ()=> playSoundOnClick(54)) //6
 numberButtons[9].addEventListener('click', ()=> playSoundOnClick(55)) //7
 numberButtons[8].addEventListener('click', ()=> playSoundOnClick(56)) //8
-numberButtons[7].addEventListener('click', ()=> playSoundOnClick(57))
+numberButtons[7].addEventListener('click', ()=> playSoundOnClick(57)) //9
 
-operators[0].addEventListener('click', ()=> playSoundOnClick(191));
-operators[1].addEventListener('click', ()=> playSoundOnClick(48))
-operators[2].addEventListener('click', ()=> playSoundOnClick(189));
-operators[3].addEventListener('click', ()=> playSoundOnClick(187));
+console.log(operators);
+operators[0].addEventListener('click', ()=> playSoundOnClick(4)); // %
+operators[1].addEventListener('click', ()=> playSoundOnClick(191)); // /
+operators[2].addEventListener('click', ()=> playSoundOnClick(48)) // *
+operators[3].addEventListener('click', ()=> playSoundOnClick(189)); // -
+operators[4].addEventListener('click', ()=> playSoundOnClick(187)); // +
 
 //Keyboard support
 
@@ -143,7 +156,7 @@ function handleKeyboard(e){
         if(e.key === "=" || e.key === "Enter") operate();
         if(e.key === "Backspace") deleteChar();
         if(e.key === "Escape") clear()
-        if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') setCurrentOperator(e.key)
+        if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/' || e.key === '%') setCurrentOperator(e.key)
 }
 
 // Add sound effects
@@ -165,6 +178,7 @@ function playSoundOnClick(e){
     audio.play();
     button.classList.add('playing');
 }
+
 // Add animations to buttons
 
 function removeTransition(e){
